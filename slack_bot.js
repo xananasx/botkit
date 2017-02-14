@@ -105,6 +105,54 @@ var bot = controller.spawn({
         start: true,
         timeZone: 'Asia/Tokyo'
   });
+  new CronJob({
+        cronTime: '00 30 9 * * 1-5',
+        onTick: function() {
+                var today = new Date();
+                var holiday = JapaneseHolidays.isHoliday(today);
+
+                if (! holiday) { //平日のみ投稿する
+                  bot.say({
+                          channel: 'C0HQG67Q9',
+                          text: '朝ZOONEの時間です'
+                  });
+                }
+        },
+        start: true,
+        timeZone: 'Asia/Tokyo'
+  });
+  new CronJob({
+        cronTime: '00 30 12 * * 1-5',
+        onTick: function() {
+                var today = new Date();
+                var holiday = JapaneseHolidays.isHoliday(today);
+
+                if (! holiday) { //平日のみ投稿する
+                  bot.say({
+                          channel: 'C0HQG67Q9',
+                          text: 'そろそろお昼のZOONEの時間です'
+                  });
+                }
+        },
+        start: true,
+        timeZone: 'Asia/Tokyo'
+  });
+  new CronJob({
+        cronTime: '00 30 18 * * 1-5',
+        onTick: function() {
+                var today = new Date();
+                var holiday = JapaneseHolidays.isHoliday(today);
+
+                if (! holiday) { //平日のみ投稿する
+                  bot.say({
+                          channel: 'C0HQG67Q9',
+                          text: '帰りもZOONEに投稿します'
+                  });
+                }
+        },
+        start: true,
+        timeZone: 'Asia/Tokyo'
+  });
 });
 
 var yaml = require('js-yaml');
