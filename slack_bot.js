@@ -92,12 +92,12 @@ var bot = controller.spawn({
 
                 if (holiday) {
                   bot.say({
-                          channel: 'C2Q3AGT32',
+                          channel: '#engineer',
                           text: '休日出勤つらかったけど帰るでほるす:hankey:'
                   });
                 } else {
                   bot.say({
-                          channel: 'C2Q3AGT32',
+                          channel: '#engineer',
                           text: '帰るでほるす:hankey:'
                   });
                 }
@@ -113,7 +113,7 @@ var bot = controller.spawn({
 
                 if (! holiday) { //平日のみ投稿する
                   bot.say({
-                          channel: 'C0HQG67Q9',
+                          channel: '#random',
                           text: '朝ZOONEの時間です'
                   });
                 }
@@ -129,7 +129,7 @@ var bot = controller.spawn({
 
                 if (! holiday) { //平日のみ投稿する
                   bot.say({
-                          channel: 'C0HQG67Q9',
+                          channel: '#random',
                           text: 'そろそろお昼のZOONEの時間です'
                   });
                 }
@@ -145,7 +145,7 @@ var bot = controller.spawn({
 
                 if (! holiday) { //平日のみ投稿する
                   bot.say({
-                          channel: 'C0HQG67Q9',
+                          channel: '#random',
                           text: '帰りもZOONEに投稿します'
                   });
                 }
