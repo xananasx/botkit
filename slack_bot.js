@@ -586,20 +586,13 @@ controller.hears(['昼飯ガチャ'], 'direct_message,direct_mention,mention', f
 controller.hears(['sgu', 'SGU'], 'direct_message,direct_mention,mention', (bot, message) => {
 
   controller.storage.users.get(message.user, (err, user) => {
-      const res = `
-  _____                        _____ _       _           _ _    _       _
- / ____|                      / ____| |     | |         | | |  | |     | |
-| (___  _   _ _ __   ___ _ __| |  __| | ___ | |__   __ _| | |  | |_ __ | | _____
- \___ \| | | | '_ \ / _ \ '__| | |_ | |/ _ \| '_ \ / _\` | | |  | | '_ \| |/ / _ \
- ____) | |_| | |_) |  __/ |  | |__| | | (_) | |_) | (_| | | |__| | | | |   < (_) |
-|_____/ \__,_| .__/ \___|_|   \_____|_|\___/|_.__/ \__,_|_|\____/|_| |_|_|\_\___/
-`;
+    var sgu = fs.readFileSync('resources/sgu.txt', 'utf-8');
 
-      try {
-        bot.replyWithTyping(message, "```\n" + res + "```\n");
-      } catch (e) {
-        bot.replyWithTyping(message, "失敗");
-      }
+    try {
+      bot.replyWithTyping(message, "```\n" + sgu + "```\n");
+    } catch (e) {
+      bot.replyWithTyping(message, "失敗");
+    }
 
   });
 
