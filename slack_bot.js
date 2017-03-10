@@ -275,19 +275,6 @@ controller.hears(['(.*)の天気', '(.*) 天気', '天気 (.*)'], 'direct_messag
   }
 });
 
-controller.hears(['うんち', 'うんこ', 'poop', 'hankey'], 'ambient', function(bot, message) {
-
-    bot.api.reactions.add({
-        timestamp: message.ts,
-        channel: message.channel,
-        name: 'poop',
-    }, function(err, res) {
-        if (err) {
-            bot.botkit.log('Failed to add emoji reaction :(', err);
-        }
-    });
-});
-
 controller.hears(['^lgtm$'], 'direct_message,direct_mention,mention', function(bot, message) {
   var options = {
     url: 'http://www.lgtm.in/g',
@@ -766,6 +753,8 @@ controller.hears(['(.*)'], 'direct_message,direct_mention,mention', function(bot
   });
 });
 
+/*-----------------------------------------------------------------------------------------------------
+#以下動いてない
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
     'direct_message,direct_mention,mention', function(bot, message) {
 
@@ -795,3 +784,18 @@ function formatUptime(uptime) {
     uptime = uptime + ' ' + unit;
     return uptime;
 }
+
+controller.hears(['うんち', 'うんこ', 'poop', 'hankey'], 'ambient', function(bot, message) {
+
+    bot.api.reactions.add({
+        timestamp: message.ts,
+        channel: message.channel,
+        name: 'poop',
+    }, function(err, res) {
+        if (err) {
+            bot.botkit.log('Failed to add emoji reaction :(', err);
+        }
+    });
+});
+
+-----------------------------------------------------------------------------------------------------*/
