@@ -105,7 +105,7 @@ var bot = controller.spawn({
         start: true,
         timeZone: 'Asia/Tokyo'
   });
-/*
+
   new CronJob({
         cronTime: '00 30 9 * * 1-5',
         onTick: function() {
@@ -113,10 +113,7 @@ var bot = controller.spawn({
                 var holiday = JapaneseHolidays.isHoliday(today);
 
                 if (! holiday) { //平日のみ投稿する
-                  bot.say({
-                          channel: '#random',
-                          text: '朝ZOONEの時間です'
-                  });
+                    nomuSay('朝ZOONEの時間です！', '#random')
                 }
         },
         start: true,
@@ -129,10 +126,7 @@ var bot = controller.spawn({
                 var holiday = JapaneseHolidays.isHoliday(today);
 
                 if (! holiday) { //平日のみ投稿する
-                  bot.say({
-                          channel: '#random',
-                          text: 'そろそろお昼のZOONEの時間です'
-                  });
+                    nomuSay('そろそろお昼のZOONEの時間です！', '#random')
                 }
         },
         start: true,
@@ -145,16 +139,13 @@ var bot = controller.spawn({
                 var holiday = JapaneseHolidays.isHoliday(today);
 
                 if (! holiday) { //平日のみ投稿する
-                  bot.say({
-                          channel: '#random',
-                          text: '帰りもZOONEに投稿します'
-                  });
+                    nomuSay('帰りもZOONEに投稿します！', '#random')
                 }
         },
         start: true,
         timeZone: 'Asia/Tokyo'
   });
- */
+
 });
 
 var yaml = require('js-yaml');
@@ -754,6 +745,44 @@ controller.hears(['(.*)'], 'direct_message,direct_mention,mention', function(bot
 
   });
 });
+
+function nomuSay(text, channel) {
+
+    var options = {
+        headers: {
+            "Cookie": "PHPSESSID=3ep1tb6lt1le5qeml82p7j5rh6"
+        },
+        url: 'http://racing-lagoon.info/nomu/translate.php',
+        method: 'POST',
+        form: {
+            level: 3,
+            before: text,
+            options: "nochk",
+            transbtn: true,
+            token: "aca4223a9f837dcc8f2637e571ebd7a4511558dd38d6e4fc52804b8dae3f1322"
+        }
+    };
+
+    var request = require('request');
+    request(options, function(error, response,body){
+        var cheerio = require("cheerio");
+        var $ = cheerio.load(body);
+        var resultText = $('textarea[name=after1]').val();
+
+
+        try {
+            bot.say({
+                channel: channel,
+                text: resultText
+            });
+        } catch (e) {
+            bot.replyWithTyping(message, "ノムリッシュ失敗しました");
+            console.log("ノムリッシュ error",e);
+        }
+
+    });
+
+}
 
 /*-----------------------------------------------------------------------------------------------------
 #以下動いてない
