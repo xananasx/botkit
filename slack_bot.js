@@ -105,6 +105,7 @@ var bot = controller.spawn({
         start: true,
         timeZone: 'Asia/Tokyo'
   });
+/*
   new CronJob({
         cronTime: '00 30 9 * * 1-5',
         onTick: function() {
@@ -153,6 +154,7 @@ var bot = controller.spawn({
         start: true,
         timeZone: 'Asia/Tokyo'
   });
+ */
 });
 
 var yaml = require('js-yaml');
